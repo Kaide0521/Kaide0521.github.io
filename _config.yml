@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: 芝麻酱
+subtitle: '踩坑记'
+description: '芝麻酱的技术学习踩坑记'
 keywords:
-author: John Doe
-language: en
+author: 芝麻酱
+language: zh-CN
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://blog.kaide0521.cn/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -93,7 +93,16 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
+# Extensions
+## Plugins: http://hexo.io/plugins/
+plugin:
+- hexo-generate-feed
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -101,3 +110,10 @@ deploy:
   type: git
   repository: https://github.com/Kaide0521/kaide0521.github.io
   branch: master
+
+symbols_count_time:
+  symbols: true                # 文章字数统计
+  time: true                   # 文章阅读时长
+  total_symbols: true          # 站点总字数统计
+  total_time: true             # 站点总阅读时长
+  exclude_codeblock: false     # 排除代码字数统计
