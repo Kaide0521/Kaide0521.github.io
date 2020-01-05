@@ -5,9 +5,9 @@
   <subtitle>踩坑记</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://blog.kaide0521.cn/"/>
   <updated>2020-01-02T04:51:50.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://blog.kaide0521.cn/</id>
   
   <author>
     <name>芝麻酱</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>first article</title>
-    <link href="http://yoursite.com/2020/01/02/first-article/"/>
-    <id>http://yoursite.com/2020/01/02/first-article/</id>
+    <link href="https://blog.kaide0521.cn/2020/01/02/first-article/"/>
+    <id>https://blog.kaide0521.cn/2020/01/02/first-article/</id>
     <published>2020-01-02T04:51:48.000Z</published>
     <updated>2020-01-02T04:51:50.000Z</updated>
     
@@ -33,8 +33,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2020/01/01/hello-world/"/>
-    <id>http://yoursite.com/2020/01/01/hello-world/</id>
+    <link href="https://blog.kaide0521.cn/2020/01/01/hello-world/"/>
+    <id>https://blog.kaide0521.cn/2020/01/01/hello-world/</id>
     <published>2020-01-01T12:08:45.640Z</published>
     <updated>2020-01-01T12:08:46.000Z</updated>
     
