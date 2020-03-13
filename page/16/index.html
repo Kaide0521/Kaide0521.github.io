@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/%E9%94%81%E4%B8%8Evolatile%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/12148927?s=400&u=db4cba304b11bb561b4be7f7dd95ee1a06568e7e&v=4">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">蚂蚱跳跃问题</a>
+            <a href="/2020/01/05/%E9%94%81%E4%B8%8Evolatile%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89/" class="post-title-link" itemprop="url">锁与volatile的内存语义</a>
         </h2>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-05 20:53:16 / 修改时间：21:13:22" itemprop="dateCreated datePublished" datetime="2020-01-05T20:53:16+08:00">2020-01-05</time>
+              <time title="创建时间：2020-01-05 21:14:23 / 修改时间：21:15:12" itemprop="dateCreated datePublished" datetime="2020-01-05T21:14:23+08:00">2020-01-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,14 +226,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">算法练习</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="蚂蚱跳跃问题" title="阅读次数">
+            <span id="/2020/01/05/%E9%94%81%E4%B8%8Evolatile%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89/" class="post-meta-item leancloud_visitors" data-flag-title="锁与volatile的内存语义" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/05/%E9%94%81%E4%B8%8Evolatile%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/%E9%94%81%E4%B8%8Evolatile%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,14 +259,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -278,33 +278,85 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="蚂蚱跳跃问题"><a href="#蚂蚱跳跃问题" class="headerlink" title="蚂蚱跳跃问题"></a>蚂蚱跳跃问题</h1><p><strong>题目大意：</strong><br>一个蚂蚱最初位于坐标轴的原点，现在蚂蚱要跳跃到坐标轴的s点，跳跃规则是蚂蚱既可以往正方向跳跃，也可以往负方向跳跃，蚂蚱第一次跳跃1个单位，以后的跳跃步数在前一步的基础上加一。现在求蚂蚱跳跃到s点最少需要多少步数？<br>原题截图如下：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTIwMTY0ODI4Mjgw?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>题意分析：</p>
-<p>首先看题目的数据最大约为10亿，意味着不可能采用搜索、暴力等一些耗时的解决办法，也不会让你在代码中开辟较大的数组，那么拿到这个问题如何去解决呢？</p>
-<h4 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h4><ol>
-<li><p>假如S为负，则只需求正S的结果</p>
-</li>
-<li><p>如果目标点S恰好能等于S = F(n) =（n(n+1)）/2 , 说明最少只要经过n步就可以准确到达S点</p>
-</li>
-<li><p>S一定介于F(n)与F(n+1)之间，即 F(n) &lt;= S &lt;= F(n+1)</p>
-</li>
-</ol>
-<h4 id="进一步分析-："><a href="#进一步分析-：" class="headerlink" title="进一步分析 ："></a>进一步分析 ：</h4><ol start="4">
-<li><p>问题其实就是求一个序列1，2，3，…… , m-1, m的和要为S，其中这些数可正可负</p>
-</li>
-<li><p>既然S = 1(-1) + 2(-2) + … … + m(-m)那么蚂蚱必须至少要经过n步（因为F(n) &lt;= S）才能使得步数之和为S</p>
-</li>
-<li><p>假如所蚂蚱经过n步到达F(n)点，那么它下一步跳跃n+1个单位到达F(n+1)点，记 d = F(n+1) - S，在这里插入代码片</p>
-<p><strong>如果d为偶数</strong>，那么一定存在一个数（1=&lt; k &lt;= n）使得 2*k = d , 也就是说 S = 1+2+…..+ n + (n+1)-d</p>
-<p>即S = 1 + 2 + …+(-k) + ….+ n +(n+1)，从而可以知道只要再走一步就可以实现1—n+1个不同符号的数相加和为S.</p>
-<p><strong>假如 d为奇数</strong>，那么在1到n之间不可能有一个数的倍数为d，那么可以再走一步得F(n+2）- S = </p>
-<p>d2，如果d2为偶数，就得解，，否则就再走一步F(n+3) - S = t3,   </p>
-<p>t2和t3一定有一个数为偶数，，问题就得解了,所以当d为奇数的时候要么再n的基础上再走两步，要么再走三步</p>
-</li>
-</ol>
-<h4 id="具体代码实现如下："><a href="#具体代码实现如下：" class="headerlink" title="具体代码实现如下："></a>具体代码实现如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**得到第T步的位置**&#x2F;</span><br><span class="line">long result(int t)&#123;</span><br><span class="line">    return (t*(t+1))&#x2F;2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**得到位置X的临近点步数**&#x2F;</span><br><span class="line">getPos(long x) &#123;</span><br><span class="line">	int t &#x3D; floor(sqrt(2*x));</span><br><span class="line">	int r &#x3D; t + 2;</span><br><span class="line">	while(t &lt; r)&#123;</span><br><span class="line">		if(result(t) &gt; x)&#123;</span><br><span class="line">			return t -1;</span><br><span class="line">		&#125;</span><br><span class="line">		if(result(t) &#x3D;&#x3D; x)&#123;</span><br><span class="line">			return t;</span><br><span class="line">		&#125;</span><br><span class="line">		t++;	</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**求解到达x的最少步数**&#x2F;</span><br><span class="line">int solve(int x)&#123;</span><br><span class="line">    x &#x3D; abs(x);</span><br><span class="line">	int left &#x3D; getPos(x);</span><br><span class="line">	int leftResult &#x3D; result(left);</span><br><span class="line">	if(leftResult &#x3D;&#x3D; x) return left;</span><br><span class="line">	if((leftResult+left+1-x)%2 &#x3D;&#x3D; 1)&#123;</span><br><span class="line">		return (left + 2)%2 &#x3D;&#x3D; 1 ? left + 2 : left + 3;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		return left + 1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="锁与volatile的内存语义"><a href="#锁与volatile的内存语义" class="headerlink" title="锁与volatile的内存语义"></a><strong>锁与volatile的内存语义</strong></h2><ul>
+<li>1.锁的内存语义</li>
+<li>2.volatile内存语义</li>
+<li>3.synchronized内存语义</li>
+<li>4.Lock与synchronized的区别</li>
+<li>5.ReentrantLock源码实例分析</li>
+</ul>
+<hr>
+<h3 id="1-锁的内存语义"><a href="#1-锁的内存语义" class="headerlink" title="1.锁的内存语义"></a><strong>1.锁的内存语义</strong></h3><p>锁是java并发编程中最重要的同步机制。锁除了让临界区互斥执行外，还可以让释放锁的线程向获取同一个锁的线程发送消息。</p>
+<h3 id="1-1-锁释放和获取的内存语义"><a href="#1-1-锁释放和获取的内存语义" class="headerlink" title="1.1 锁释放和获取的内存语义"></a><strong>1.1 锁释放和获取的内存语义</strong></h3><p>当线程释放锁时，JMM会把该线程对应的本地内存中的共享变量刷新到主内存中；<br>当线程获取锁时，JMM会当前线程拥有的本地内存共享变量置为无效，从而使得被监视器保护的临界区代码必须要从主内存中去读取共享变量；</p>
+<h3 id="1-2-CAS操作"><a href="#1-2-CAS操作" class="headerlink" title="1.2 CAS操作"></a><strong>1.2 CAS操作</strong></h3><p>CAS是单词compare and set的缩写，意思是指在set之前先比较该值有没有变化，只有在没变的情况下才对其赋值。</p>
+<p>问题：如何在没有锁的情况下实现i++原子操作？</p>
+<p>CAS操作涉及到三个操作数，一个是内存值，一个是旧的预期值，一个是更新后的值，如果内存值和旧的预期值没有发生变化，才设置成新的值。</p>
+<pre><code>  public final int incrementAndGet() {
+    for (;;) {
+        //得到预期值
+        int current = get();
+        //得到更新后的值
+        int next = current + 1;
+        //通过CAS操作验证是否发生变化
+        if (compareAndSet(current, next))
+            return next;
+    }
+}</code></pre><p>CAS的原子性实际上是CPU实现的.</p>
+<p>CAS操作用途：可以用CAS在无锁的情况下实现原子操作，但要明确应用场合，非常简单的操作且又不想引入锁可以考虑使用CAS操作，当想要非阻塞地完成某一操作也可以考虑CAS。不推荐在复杂操作中引入CAS，会使程序可读性变差，且难以测试，同时会出现ABA问题。</p>
+<h3 id="2-volatile内存语义"><a href="#2-volatile内存语义" class="headerlink" title="2.volatile内存语义"></a><strong>2.volatile内存语义</strong></h3><p>2.1 volatile关键字的特性：</p>
+<pre><code>（1）可见性：对一个volatile关键字的读，总是能看到（任意线程）对这个关键字的写
 
-<p>虽然测试用例都通过，但是还是不知道能不能AC啊，昨天笔试时间短，竟然都没想出什么解法。。。</p>
+（2）原子性：对任意单个volatile变量的写操作，具有原子性（注：多个volatile组合操作不具有原子性）</code></pre><ul>
+<li>执行volatile写的时候，JMM会把该线程对应的本地内存（并不是实际存在的，也称为TLB，线程本地缓冲区）刷新到主内存中。这个过程可以理解为线程1（执行写方法的线程）向接下来要读取这个变量的线程（执行读方法的线程）发送了一条消息</li>
+<li>执行volatile读的时候，JMM会把该线程对应的本地内存设置为无效。线程接下来将直接从主内存中读取共享变量的值。这个过程可以理解为线程2接收到了线程1发送的消息</li>
+</ul>
+<p><strong>2.2 内存语义</strong></p>
+<ul>
+<li>当写一个volatile变量时，JMM会将本地变量中对应的共享变量值刷新到主内存中</li>
+<li>当读一个volatile变量时，JMM会将线程本地变量存储的值，置为无效值，线程接下来将从主内存中读取共享变量</li>
+</ul>
+<p><strong>2.3 实现原理</strong></p>
+<pre><code>instance = new Singleton(); 定义一个volatile变量</code></pre><p>其对应编译后的cpu指令为：</p>
+<pre><code>0x01a3de1d: movb $0×0,0×1104800(%esi);0x01a3de24: lock addl $0×0,(%esp);</code></pre><p>由编译后的汇编指令可以看出，改指令相比其他指令多个一个lock前缀</p>
+<p>Lock前缀的指令在多核处理器下会引发了两件事情：</p>
+<ul>
+<li>将当前处理器缓存行中的数据写回到主内存中</li>
+<li>这个写回的过程会使得其他处理器中缓存了该内存地址的数据无效</li>
+</ul>
+<p><strong>具体实现细节：</strong></p>
+<ul>
+<li>锁总线：早期的实现方式，当CPU读取共享变量时会锁住总线，由于cpu和其他部件的通信都是通过总线实现的，如果锁住总线的话，cpu就不能与其他部件之间进行通信，CPU处于等待的状态，导致整个系统的效率低下。</li>
+<li>锁缓存&amp;缓存一致性协议：当CPU写数据时，如果发现操作的变量是共享变量，即在其他CPU中也存在该变量的副本，会发出信号通知其他CPU将该变量的缓存行置为无效状态，因此当其他CPU需要读取这个变量时，发现自己缓存中缓存该变量的缓存行是无效的，那么它就会从内存重新读取。<br>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-GXgEIpXq-1578230026680)(<a href="http://i.imgur.com/i1Fpfis.jpg)]" target="_blank" rel="noopener">http://i.imgur.com/i1Fpfis.jpg)]</a></li>
+</ul>
+<h3 id="小结："><a href="#小结：" class="headerlink" title="小结："></a><strong>小结：</strong></h3><p>锁的内存语义的实现与可重入锁相关，可以简要总结锁的内存语义的实现包括以下两种方式：</p>
+<ul>
+<li>利用volatile变量的内存语义</li>
+<li>利用CAS附带的volatile语义</li>
+</ul>
+<h3 id="3-synchronized内存语义"><a href="#3-synchronized内存语义" class="headerlink" title="3. synchronized内存语义"></a><strong>3. synchronized内存语义</strong></h3><pre><code>synchronized也称为监视器锁，由JVM控制实现，每个对象都有类似监视器一样的锁，当监视器锁被占用是对象将会处于锁定状态，
+每个对象有一个监视器锁（monitor）。当monitor被占用时就会处于锁定状态，线程执行monitorenter指令时尝试获取monitor的所有权，过程如下：</code></pre><ol>
+<li>如果monitor的进入数为0，则该线程进入monitor，然后将进入数设置为1，该线程即为monitor的所有者。</li>
+<li>如果线程已经占有该monitor，只是重新进入，则进入monitor的进入数加1.</li>
+<li>如果其他线程已经占用了monitor，则该线程进入阻塞状态，直到monitor的进入数为0，再重新尝试获取monitor的所有权。</li>
+</ol>
+<p>当线程执行monitorexit指令时候，过程如下：<br>执行monitorexit的线程必须是objectref所对应的monitor的所有者。</p>
+<p>指令执行时，monitor的进入数减1，如果减1后进入数为0，那线程退出monitor，不再是这个monitor的所有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。 </p>
+<p>　　通过这两段描述，我们应该能很清楚的看出Synchronized的实现原理，Synchronized的语义底层是通过一个monitor的对象来完成，其实wait/notify等方法也依赖于monitor对象，这就是为什么只有在同步的块或者方法中才能调用wait/notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的原因。
+　　</p>
+<p>加轻量锁的过程很简单：在当前线程的栈帧（stack frame）中生成一个锁记录（lock record），这个锁记录比前面说的那个对象锁（管理线程队列的monitor）简单多了，它只是对象头的一个拷贝。然后把对象头里的tag改成00，并把这个栈帧里的lock record地址放入对象头里。若操作成功，那就完成了轻量锁操作。如果不成功，说明有线程在竞争，则需要在当前对象上生成重量锁来进行多线程同步，然后将Tag状态改为10，并生成Monitor对象（重量锁对象），对象头里也会放入Monitor对象的地址。最后将当前线程t排队队列中。</p>
+<p>轻量锁的解锁过程也很简单就是把栈帧里刚才的那个lock record拷贝到对象头里，若替换成功，则解锁完成，若替换不成功，表示在当前线程持有锁的这段时间内，其他线程也竞争过锁，并且发生了锁升级为重量锁，这时需要去Monitor的等待队列中唤醒一个线程去重新竞争锁。</p>
+<h3 id="4-Lock与synchronized的区别"><a href="#4-Lock与synchronized的区别" class="headerlink" title="4. Lock与synchronized的区别"></a><strong>4. Lock与synchronized的区别</strong></h3><ol>
+<li>Lock 拥有Synchronized相同的并发性和内存语义，Lock的实现依赖于cpu级别的指令控制，Synchronized的实现主要由JVM实现控制</li>
+<li>synchronized在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而Lock在发生异常时，如果没有主动通过unLock()去释放锁，则很可能造成死锁现象，因此使用Lock时需要在finally块中释放锁；</li>
+<li>Lock可以让等待锁的线程响应中断，而synchronized却不行，使用synchronized时，等待的线程会一直等待下去，不能够响应中断；</li>
+<li>通过Lock可以知道有没有成功获取锁，而synchronized却无法办到。在性能上来说，如果竞争资源不激烈，两者的性能是差不多的，而当竞争资源非常激烈时（即有大量线程同时竞争），此时Lock的性能要远远优于synchronized。所以说，在具体使用时要根据适当情况选择。</li>
+</ol>
+<h5 id="两者在概念上的区别："><a href="#两者在概念上的区别：" class="headerlink" title="两者在概念上的区别："></a><strong>两者在概念上的区别：</strong></h5><pre><code>1. 两者都是可重入的锁；
+2. synchronized就不是可中断锁，而Lock是可中断锁；
+3. synchronized是非公平锁，而lock提供公平锁的实现；
+4. Lock提供读写两种锁操作；</code></pre><h5 id="性能比较："><a href="#性能比较：" class="headerlink" title="性能比较："></a><strong>性能比较：</strong></h5><p>在JDK1.5中，synchronized的性能是比较低的，线程阻塞和唤醒由操作系统内核完成，频繁的加锁和放锁导致频繁的上下文切换，造成效率低下；因此在多线程环境下，synchronized的吞吐量下降的非常严重。但在JDK1.6时对synchronized进行了很多优化，包括偏向锁、自适应自旋、轻量级锁等措施。</p>
+<p>当需要以下高级特性时，才应该使用Lock：可定时的、可轮询的与可中断的锁获取操作，公平队列，或者非块结构的锁。否则，请使用synchronized。</p>
+<h3 id="ReentrantLock源码实例分析"><a href="#ReentrantLock源码实例分析" class="headerlink" title="ReentrantLock源码实例分析"></a><strong>ReentrantLock源码实例分析</strong></h3><p> 参照：[<a href="http://www.cnblogs.com/xrq730/p/4979021.html]" target="_blank" rel="noopener">http://www.cnblogs.com/xrq730/p/4979021.html]</a>  </p>
 
       
     </div>
@@ -324,7 +376,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -392,7 +444,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -405,7 +457,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -473,12 +525,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">73k</span>
+    <span title="站点总字数">81k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:06</span>
+    <span title="站点阅读时长">1:14</span>
 </div>
 
         

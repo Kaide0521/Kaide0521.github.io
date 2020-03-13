@@ -47,29 +47,34 @@
   };
 </script>
 
-  <meta name="description" content="芝麻酱的技术学习踩坑记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="芝麻酱">
-<meta property="og:url" content="https://blog.kaide0521.cn/index.html">
+  <meta name="description" content="1 何为SQL注入？SQL注入是一种注入攻击，由于用户的输入也是SQL执行语句的一部分，所以攻击者可以利用有注入漏洞的功能点，注入自己定义的语句，改变SQL语句结构，从而影响执行逻辑，让数据库执行任意的指令，查询数据库中任何自己需要的数据，甚至可以直接获取数据库服务器的系统权限。 2 盲注所谓盲注的本质就是猜解，就是通过“感觉”来判断当前字段是否存在注入，那何为感觉？答案是：差异（感觉到运行时间的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF中的SQL注入">
+<meta property="og:url" content="https://blog.kaide0521.cn/2020/03/10/CTF%E4%B8%AD%E7%9A%84SQL%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="芝麻酱">
-<meta property="og:description" content="芝麻酱的技术学习踩坑记">
+<meta property="og:description" content="1 何为SQL注入？SQL注入是一种注入攻击，由于用户的输入也是SQL执行语句的一部分，所以攻击者可以利用有注入漏洞的功能点，注入自己定义的语句，改变SQL语句结构，从而影响执行逻辑，让数据库执行任意的指令，查询数据库中任何自己需要的数据，甚至可以直接获取数据库服务器的系统权限。 2 盲注所谓盲注的本质就是猜解，就是通过“感觉”来判断当前字段是否存在注入，那何为感觉？答案是：差异（感觉到运行时间的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200312214229745.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhaWRlMjAxMg==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-10T13:46:37.000Z">
+<meta property="article:modified_time" content="2020-03-12T16:07:52.000Z">
 <meta property="article:author" content="芝麻酱">
+<meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200312214229745.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhaWRlMjAxMg==,size_16,color_FFFFFF,t_70">
 
-<link rel="canonical" href="https://blog.kaide0521.cn/">
+<link rel="canonical" href="https://blog.kaide0521.cn/2020/03/10/CTF%E4%B8%AD%E7%9A%84SQL%E6%B3%A8%E5%85%A5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>芝麻酱</title>
+  <title>CTF中的SQL注入 | 芝麻酱</title>
   
 
 
@@ -189,10 +194,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/03/10/CTF%E4%B8%AD%E7%9A%84SQL%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,8 +211,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/10/CTF%E4%B8%AD%E7%9A%84SQL%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">CTF中的SQL注入</a>
+          CTF中的SQL注入
         </h2>
 
         <div class="post-meta">
@@ -284,7 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-何为SQL注入？"><a href="#1-何为SQL注入？" class="headerlink" title="1 何为SQL注入？"></a><strong>1 何为SQL注入？</strong></h3><p>SQL注入是一种注入攻击，由于用户的输入也是SQL执行语句的一部分，所以攻击者可以利用有注入漏洞的功能点，注入自己定义的语句，改变SQL语句结构，从而影响执行逻辑，让数据库执行任意的指令，查询数据库中任何自己需要的数据，甚至可以直接获取数据库服务器的系统权限。</p>
+        <h3 id="1-何为SQL注入？"><a href="#1-何为SQL注入？" class="headerlink" title="1 何为SQL注入？"></a><strong>1 何为SQL注入？</strong></h3><p>SQL注入是一种注入攻击，由于用户的输入也是SQL执行语句的一部分，所以攻击者可以利用有注入漏洞的功能点，注入自己定义的语句，改变SQL语句结构，从而影响执行逻辑，让数据库执行任意的指令，查询数据库中任何自己需要的数据，甚至可以直接获取数据库服务器的系统权限。</p>
 <h3 id="2-盲注"><a href="#2-盲注" class="headerlink" title="2 盲注"></a><strong>2 盲注</strong></h3><p>所谓盲注的本质就是猜解，就是通过“感觉”来判断当前字段是否存在注入，那何为感觉？答案是：差异（感觉到运行时间的差异和页面返回结果的差异）。也就是说我们通过构造一条语句来注入到SQL布尔表达式中，使得布尔表达式执行结果的真假直接影响整条语句的执行使得系统呈现不同的反应，布尔盲注就是页面返回内容有差异，时间盲注就是执行时间有差异。</p>
 <p><img src="https://img-blog.csdnimg.cn/20200312214229745.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhaWRlMjAxMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h4 id="2-1-Bool盲注"><a href="#2-1-Bool盲注" class="headerlink" title="2.1 Bool盲注"></a>2.1 Bool盲注</h4><p>常用于猜解数据的表达式：</p>
@@ -369,15 +373,39 @@
 </tr>
 </tbody></table>
 
-      
     </div>
 
     
     
     
+		<div>
+		
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+		
+		</div>
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag"># SQL注入</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/12/Vulnstack%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="Vulnstack靶机练习（一）">
+      <i class="fa fa-chevron-left"></i> Vulnstack靶机练习（一）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
@@ -385,15 +413,10 @@
 
   </div>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -440,6 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-何为SQL注入？"><span class="nav-number">1.</span> <span class="nav-text">1 何为SQL注入？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-盲注"><span class="nav-number">2.</span> <span class="nav-text">2 盲注</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Bool盲注"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Bool盲注</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-基于时间的盲注"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 基于时间的盲注</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-报错注入"><span class="nav-number">3.</span> <span class="nav-text">3 报错注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-xpath解析错误型报错"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 xpath解析错误型报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-利用几何函数报错"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 利用几何函数报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-concat-rand-group-by-导致主键重复"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 concat+rand()+group_by()导致主键重复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-重复列名报错"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 重复列名报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-整数溢出报错"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 整数溢出报错</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-UNION联合查询注入"><span class="nav-number">4.</span> <span class="nav-text">4 UNION联合查询注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-绕过姿势备忘录"><span class="nav-number">5.</span> <span class="nav-text">5 绕过姿势备忘录</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
