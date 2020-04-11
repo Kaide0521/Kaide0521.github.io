@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.kaide0521.cn/2020/01/12/Vulnstack%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    <lastmod>2020-04-11</lastmod>
+  </url>  <url>
     <loc>https://blog.kaide0521.cn/2020/03/10/CTF%E4%B8%AD%E7%9A%84SQL%E6%B3%A8%E5%85%A5/</loc>
     <lastmod>2020-03-12</lastmod>
   </url>  <url>
@@ -11,9 +14,6 @@
     <lastmod>2020-02-23</lastmod>
   </url>  <url>
     <loc>https://blog.kaide0521.cn/2020/01/12/XXE%E6%BC%8F%E6%B4%9E%E4%B8%93%E9%A2%98/</loc>
-    <lastmod>2020-02-22</lastmod>
-  </url>  <url>
-    <loc>https://blog.kaide0521.cn/2020/01/12/Vulnstack%E9%9D%B6%E6%9C%BA%E7%BB%83%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
     <lastmod>2020-02-22</lastmod>
   </url>  <url>
     <loc>https://blog.kaide0521.cn/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/</loc>
