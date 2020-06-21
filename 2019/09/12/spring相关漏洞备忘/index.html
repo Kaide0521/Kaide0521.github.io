@@ -47,32 +47,20 @@
   };
 </script>
 
-  <meta name="description" content="Android Studio调试smali代码标签： APK逆向分析 1. 前言经过一段时间的学习，现在总结下针对APK逆向的一些基本调试技术，以阿里移动安全比赛题目为例 2. 使用Android Studio调试smali代码步骤一：下载安全Android Stuio,下载地址http:&#x2F;&#x2F;www.android-studio.org&#x2F; 步骤二：下载插件smalidea地址: https:&#x2F;&#x2F;b">
+  <meta name="description" content="前言Spring是一个开源框架，核心是控制反转（IoC）和面向切面（AOP）。简单来说，Spring是一个分层的JavaSE&#x2F;EE full-stack(一站式) 轻量级开源框架。本文主要打算梳理一下和Spring相关的漏洞。 在介绍相关漏洞的时候，先要了解一下相关框架的基本特性功能用途。 一、Spring Boot相关漏洞https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;NnwtBW2uot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Studio调试smali代码">
-<meta property="og:url" content="https://blog.kaide0521.cn/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:title" content="Spring相关漏洞备忘">
+<meta property="og:url" content="https://blog.kaide0521.cn/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/index.html">
 <meta property="og:site_name" content="芝麻酱">
-<meta property="og:description" content="Android Studio调试smali代码标签： APK逆向分析 1. 前言经过一段时间的学习，现在总结下针对APK逆向的一些基本调试技术，以阿里移动安全比赛题目为例 2. 使用Android Studio调试smali代码步骤一：下载安全Android Stuio,下载地址http:&#x2F;&#x2F;www.android-studio.org&#x2F; 步骤二：下载插件smalidea地址: https:&#x2F;&#x2F;b">
+<meta property="og:description" content="前言Spring是一个开源框架，核心是控制反转（IoC）和面向切面（AOP）。简单来说，Spring是一个分层的JavaSE&#x2F;EE full-stack(一站式) 轻量级开源框架。本文主要打算梳理一下和Spring相关的漏洞。 在介绍相关漏洞的时候，先要了解一下相关框架的基本特性功能用途。 一、Spring Boot相关漏洞https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;NnwtBW2uot">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNjUzMDA3?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzEzMzk0?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzM4NzA0?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzU3OTg4?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzODI0Nzg2?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTE5MzM4?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTQzNzIy?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MDE0MTcw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MTI3Mzk5?x-oss-process=image/format,png">
-<meta property="article:published_time" content="2020-01-05T13:27:12.000Z">
-<meta property="article:modified_time" content="2020-01-05T13:30:16.000Z">
+<meta property="article:published_time" content="2019-09-12T13:46:37.000Z">
+<meta property="article:modified_time" content="2020-06-21T11:51:20.000Z">
 <meta property="article:author" content="芝麻酱">
-<meta property="article:tag" content="android安全">
-<meta property="article:tag" content="smali代码">
-<meta property="article:tag" content="APK逆向分析">
+<meta property="article:tag" content="Spring漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNjUzMDA3?x-oss-process=image/format,png">
 
-<link rel="canonical" href="https://blog.kaide0521.cn/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/">
+<link rel="canonical" href="https://blog.kaide0521.cn/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/">
 
 
 <script id="page-configurations">
@@ -84,7 +72,7 @@
   };
 </script>
 
-  <title>Android Studio调试smali代码 | 芝麻酱</title>
+  <title>Spring相关漏洞备忘 | 芝麻酱</title>
   
 
 
@@ -208,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/12148927?s=400&u=db4cba304b11bb561b4be7f7dd95ee1a06568e7e&v=4">
@@ -221,7 +209,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Android Studio调试smali代码
+          Spring相关漏洞备忘
         </h2>
 
         <div class="post-meta">
@@ -230,24 +218,30 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-05 21:27:12 / 修改时间：21:30:16" itemprop="dateCreated datePublished" datetime="2020-01-05T21:27:12+08:00">2020-01-05</time>
+              <time title="创建时间：2019-09-12 21:46:37" itemprop="dateCreated datePublished" datetime="2019-09-12T21:46:37+08:00">2019-09-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-21 19:51:20" itemprop="dateModified" datetime="2020-06-21T19:51:20+08:00">2020-06-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">移动安全</span>
+                  <a href="/categories/Spring%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring漏洞</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="Android Studio调试smali代码" title="阅读次数">
+            <span id="/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/" class="post-meta-item leancloud_visitors" data-flag-title="Spring相关漏洞备忘" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -262,8 +256,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/12/spring%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E%E5%A4%87%E5%BF%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -273,14 +267,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -292,51 +286,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Android-Studio调试smali代码"><a href="#Android-Studio调试smali代码" class="headerlink" title="Android Studio调试smali代码"></a>Android Studio调试smali代码</h3><p>标签： APK逆向分析</p>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>经过一段时间的学习，现在总结下针对APK逆向的一些基本调试技术，以阿里移动安全比赛题目为例</p>
-<h2 id="2-使用Android-Studio调试smali代码"><a href="#2-使用Android-Studio调试smali代码" class="headerlink" title="2. 使用Android Studio调试smali代码"></a>2. 使用Android Studio调试smali代码</h2><p>步骤一：下载安全Android Stuio,下载地址<a href="http://www.android-studio.org/" target="_blank" rel="noopener">http://www.android-studio.org/</a></p>
-<p>步骤二：下载插件smalidea<br>地址: <a href="https://bitbucket.org/JesusFreke/smali/downloads" target="_blank" rel="noopener">https://bitbucket.org/JesusFreke/smali/downloads</a></p>
-<p>步骤三：下载完成后，打开Android studio的Settings——&gt;Plugins，选择 Install plugin from disk</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNjUzMDA3?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>步骤四：反编译apk，修改AndroidManifest.xml文件的属性android:debuggable=”true”</p>
-<pre><code>java -jar apktool.jar d -d ./apk/AliCrackme_1.apk -o out</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzEzMzk0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>修改完成之后，回编译apk</p>
-<pre><code>java -jar apktool.jar b -d out -o debug.apk</code></pre><p>回编之后，进行签名</p>
-<pre><code>java -jar .\sign\signapk.jar .\sign\testkey.x509.pem .\sign\testkey.pk8 debug.apk debug.sig.apk</code></pre><p>步骤五：安装签名之后的应用</p>
-<pre><code>adb install debug.sig.apk</code></pre><p>使用backsmali得到apk的smali代码</p>
-<pre><code>java -jar backsmali.jar debug.sig.apk</code></pre><p>将得到的smali代码导入Android Studio中</p>
-<p>步骤六：配置远程调试的选项，选择Run–&gt;Edit Configurations：</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzM4NzA0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>增加一个Remote调试的调试选项，端口选择:8700</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzU3OTg4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>步骤七：下好断点，针对本APK我们在button的onclik函数出下断点（点击鼠标右键）</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzODI0Nzg2?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>步骤八：以调试状态启动app</p>
-<pre><code>adb shell am start -D -n com.example.simpleencryption/.MainActivity</code></pre><p>下好断点之后Run-&gt;Debug<br>执行完</p>
-<pre><code>invoke-virtual {v6}, Lcom/example/simpleencryption/MainActivity;-&gt;getTableFromPic()Ljava/lang/String;</code></pre><p>得到图6内容</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTE5MzM4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>通过分析我们大体知道个整个函数的执行逻辑</p>
-<ol>
-<li>通过MainActivity中的getTableFromPic方法，获取一个类似密码表的东西</li>
-<li>通过MainActivity中的getPwdFromPic方法，获取正确的密码”义弓么丸广之”</li>
-<li>获取我们输入内容的utf-8的字节码，然后调用MainActivity的access$0方法，获取加密之后的内容</li>
-</ol>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTQzNzIy?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<ol start="4">
-<li>再看MainActivity的access$0方法的实现</li>
-</ol>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MDE0MTcw?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>里面又调用了bytesToAliSmsCode，传了两个参数，一个是我们输入的qwer的bytes数组，一个是获取的密码表</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MTI3Mzk5?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>具体的逻辑如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">.method private static bytesToAliSmsCode(Ljava&#x2F;lang&#x2F;String;[B)Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">    .registers 5</span><br><span class="line">    .param p0, &quot;table&quot;    # Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">    .param p1, &quot;data&quot;    # [B</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line 144</span><br><span class="line">    new-instance v1, Ljava&#x2F;lang&#x2F;StringBuilder;</span><br><span class="line"></span><br><span class="line">    invoke-direct &#123;v1&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    .line 145</span><br><span class="line">    .local v1, &quot;sb&quot;:Ljava&#x2F;lang&#x2F;StringBuilder;    &#x2F;&#x2F;创建一个StringBuilder的变量sb</span><br><span class="line">    const&#x2F;4 v0, 0x0</span><br><span class="line"></span><br><span class="line">    .local v0, &quot;i&quot;:I    &#x2F;&#x2F; 定义一个int变量i &#x3D; 0</span><br><span class="line">    :goto_6</span><br><span class="line">    array-length v2, p1</span><br><span class="line"></span><br><span class="line">    if-lt v0, v2, :cond_e   &#x2F;&#x2F; 比较i和data数组的长度，如果小于，跳到cond_e</span><br><span class="line"></span><br><span class="line">    .line 148</span><br><span class="line">    invoke-virtual &#123;v1&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;toString()Ljava&#x2F;lang&#x2F;String;</span><br><span class="line"></span><br><span class="line">    move-result-object v2</span><br><span class="line"></span><br><span class="line">    return-object v2</span><br><span class="line"></span><br><span class="line">    .line 146</span><br><span class="line">    :cond_e</span><br><span class="line">    aget-byte v2, p1, v0   &#x2F;&#x2F; 取出data[i]</span><br><span class="line"></span><br><span class="line">    and-int&#x2F;lit16 v2, v2, 0xff</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v2&#125;, Ljava&#x2F;lang&#x2F;String;-&gt;charAt(I)C   &#x2F;&#x2F; 获取data[i]在table数组的字符</span><br><span class="line"></span><br><span class="line">    move-result v2</span><br><span class="line">    &#x2F;&#x2F; 调用sb的append函数进行拼接</span><br><span class="line">    invoke-virtual &#123;v1, v2&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;append(C)Ljava&#x2F;lang&#x2F;StringBuilder;</span><br><span class="line"></span><br><span class="line">    .line 145</span><br><span class="line">    add-int&#x2F;lit8 v0, v0, 0x1</span><br><span class="line"></span><br><span class="line">    goto :goto_6</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
-
-<p>整体逻辑就是一个循环，将输入字符转化为utf-8格式的bye数组，然后取出data[i]table表中所对应的字符，然后拼接返回<br> 5. 返回字符串与正确密码”义弓么丸广之”比较<br> invoke-virtual {v4, v6}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z<br> 此时我们输入的qwer加密后与”义弓么丸广之”<br>肯定不相等，所以这里我们可以想办法是的输入的字符串加密等于”义弓么丸广之”</p>
-<p><strong>怎么办呢？</strong></p>
-<p>我们可以将bytesToAliSmsCode进行反向实现，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[])&#123;</span><br><span class="line">		String table &#x3D; &quot;一乙二十丁厂七卜人入八九几儿了力乃刀又三于干亏士工土才寸下大丈与万上小口巾山千乞川亿个勺久凡及夕丸么广亡门义之尸弓己已子卫也女飞刃习叉马乡丰王井开夫天无元专云扎艺木五支厅不太犬区历尤友匹车巨牙屯比互切瓦止少日中冈贝内水见午牛手毛气升长仁什片仆化仇币仍仅斤爪反介父从今凶分乏公仓月氏勿欠风丹匀乌凤勾文六方火为斗忆订计户认心尺引丑巴孔队办以允予劝双书幻玉刊示末未击打巧正扑扒功扔去甘世古节本术可丙左厉右石布龙平灭轧东卡北占业旧帅归且旦目叶甲申叮电号田由史只央兄叼叫另叨叹四生失禾丘付仗代仙们仪白仔他斥瓜乎丛令用甩印乐&quot;;</span><br><span class="line">		String dataString &#x3D; &quot;义弓么丸广之&quot;;</span><br><span class="line">		String passwd  &#x3D; &quot;&quot;;</span><br><span class="line">		for(int i &#x3D; 0 ; i &lt; dataString.length(); i++)&#123;</span><br><span class="line">			passwd +&#x3D; (char)table.indexOf(dataString.charAt(i));</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;passwd &#x3D; &quot; + passwd);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行出的结果为passwd = 581026就是我们输入框里面要输入的字符串</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Spring是一个开源框架，核心是控制反转（IoC）和面向切面（AOP）。简单来说，Spring是一个分层的JavaSE/EE full-stack(一站式) 轻量级开源框架。本文主要打算梳理一下和Spring相关的漏洞。</p>
+<p>在介绍相关漏洞的时候，先要了解一下相关框架的基本特性功能用途。</p>
+<h2 id="一、Spring-Boot相关漏洞"><a href="#一、Spring-Boot相关漏洞" class="headerlink" title="一、Spring Boot相关漏洞"></a>一、Spring Boot相关漏洞</h2><p><a href="https://mp.weixin.qq.com/s/NnwtBW2uotCg_MWKJbpy5w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NnwtBW2uotCg_MWKJbpy5w</a></p>
+<h3 id="1-Spring-cloud-config-server"><a href="#1-Spring-cloud-config-server" class="headerlink" title="1. Spring cloud config server"></a>1. Spring cloud config server</h3><p>Spring Cloud Config是Spirng Cloud下用于分布式配置管理的组件，分为Config-Server和Config-Client两个角色。 Config-Server负责集中存储/管理配置文件，Config-Client则可以从Config-Server提供的HTTP接口获取配置文件使用。</p>
+<p>靶场环境：<a href="https://github.com/pe4ch/cve-hub/tree/master/cve-2019-3799" target="_blank" rel="noopener">https://github.com/pe4ch/cve-hub/tree/master/cve-2019-3799</a></p>
+<p><a href="https://github.com/pe4ch/cve-hub/tree/master/cve-2019-3799" target="_blank" rel="noopener">https://github.com/pe4ch/cve-hub/tree/master/cve-2019-3799</a></p>
+<h4 id="CVE-2019-3799"><a href="#CVE-2019-3799" class="headerlink" title="CVE-2019-3799"></a>CVE-2019-3799</h4><p>任意文件下载<br>Severity is high unless otherwise noted.</p>
+<ul>
+<li>Spring Cloud Config 2.1.0 to 2.1.1</li>
+<li>Spring Cloud Config 2.0.0 to 2.0.3</li>
+<li>Spring Cloud Config 1.4.0 to 1.4.5</li>
+<li>Older unsupported versions are also affected</li>
+</ul>
+<p><a href="https://xz.aliyun.com/t/4844" target="_blank" rel="noopener">https://xz.aliyun.com/t/4844</a></p>
+<p><a href="https://github.com/mpgn/CVE-2019-3799.git" target="_blank" rel="noopener">https://github.com/mpgn/CVE-2019-3799.git</a></p>
+<h4 id="CVE-2020-5405"><a href="#CVE-2020-5405" class="headerlink" title="CVE-2020-5405"></a>CVE-2020-5405</h4><p>Severity is high unless otherwise noted.<br>Older unsupported versions are also affected.</p>
+<ul>
+<li>Spring Cloud Config 2.2.0 to 2.2.1</li>
+<li>Spring Cloud Config 2.1.0 to 2.1.6</li>
+</ul>
+<p><a href="https://blog.riskivy.com/cve-2020-5405-spring-cloud-config-server-%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A/" target="_blank" rel="noopener">https://blog.riskivy.com/cve-2020-5405-spring-cloud-config-server-%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A/</a></p>
+<p><a href="http://www.lmxspace.com/2020/03/09/spring-cloud-config-server-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E3%80%90CVE-2020-5405%E3%80%91/" target="_blank" rel="noopener">http://www.lmxspace.com/2020/03/09/spring-cloud-config-server-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E3%80%90CVE-2020-5405%E3%80%91/</a></p>
+<h3 id="2-Spring-boot-actuator"><a href="#2-Spring-boot-actuator" class="headerlink" title="2. Spring boot actuator"></a>2. Spring boot actuator</h3><p><a href="https://xz.aliyun.com/t/4258" target="_blank" rel="noopener">https://xz.aliyun.com/t/4258</a></p>
+<p><a href="http://radiosong.cn/index.php/2019/04/03/1.html" target="_blank" rel="noopener">http://radiosong.cn/index.php/2019/04/03/1.html</a></p>
+<p>靶场环境：<a href="https://github.com/veracode-research/actuator-testbed" target="_blank" rel="noopener">https://github.com/veracode-research/actuator-testbed</a></p>
+<p><a href="https://www.veracode.com/blog/research/exploiting-spring-boot-actuators" target="_blank" rel="noopener">https://www.veracode.com/blog/research/exploiting-spring-boot-actuators</a></p>
+<p><a href="https://lucifaer.com/2019/03/11/Attack%20Spring%20Boot%20Actuator%20via%20jolokia%20Part%201/" target="_blank" rel="noopener">https://lucifaer.com/2019/03/11/Attack%20Spring%20Boot%20Actuator%20via%20jolokia%20Part%201/</a></p>
+<h2 id="二、Spring-messaging"><a href="#二、Spring-messaging" class="headerlink" title="二、Spring messaging"></a>二、Spring messaging</h2><h4 id="CVE-2018-1270"><a href="#CVE-2018-1270" class="headerlink" title="CVE-2018-1270"></a>CVE-2018-1270</h4><p>影响版本</p>
+<ul>
+<li>Spring Framework 5.0 to 5.0.4.</li>
+<li>Spring Framework 4.3 to 4.3.14</li>
+<li>已不支持的旧版本仍然受影响</li>
+</ul>
+<p>修复版本</p>
+<ul>
+<li>5.0.x 用户升级到5.0.5版本</li>
+<li>4.3.x 用户升级到4.3.15版本</li>
+</ul>
+<p><a href="https://github.com/CaledoniaProject/CVE-2018-1270.git" target="_blank" rel="noopener">https://github.com/CaledoniaProject/CVE-2018-1270.git</a></p>
+<h4 id="CVE-2018-1275"><a href="#CVE-2018-1275" class="headerlink" title="CVE-2018-1275"></a>CVE-2018-1275</h4><p>由于可能官方版本发布流程或代码管理上所犯低级错误，导致4.3.14-4.3.15版本升级中该漏洞所涉及文件并未更新，所以CVE-2018-1270在4.3.14版本中并未修复，就有了最新的CVE-2018-1275漏洞，并在4.3.16版本中得到了修复。</p>
+<h2 id="三、Spring-data"><a href="#三、Spring-data" class="headerlink" title="三、Spring data"></a>三、Spring data</h2><h4 id="CVE-2017-8046"><a href="#CVE-2017-8046" class="headerlink" title="CVE-2017-8046"></a>CVE-2017-8046</h4><p><a href="https://github.com/m3ssap0/SpringBreakVulnerableApp" target="_blank" rel="noopener">https://github.com/m3ssap0/SpringBreakVulnerableApp</a></p>
+<h4 id="CVE-2018-1273"><a href="#CVE-2018-1273" class="headerlink" title="CVE-2018-1273"></a>CVE-2018-1273</h4><p><a href="https://github.com/knqyf263/CVE-2018-1273.git" target="_blank" rel="noopener">https://github.com/knqyf263/CVE-2018-1273.git</a></p>
+<p><a href="https://github.com/jas502n/cve-2018-1273.git" target="_blank" rel="noopener">https://github.com/jas502n/cve-2018-1273.git</a></p>
+<h4 id="CVE-2018-1259"><a href="#CVE-2018-1259" class="headerlink" title="CVE-2018-1259"></a>CVE-2018-1259</h4><p><a href="https://paper.seebug.org/600/" target="_blank" rel="noopener">https://paper.seebug.org/600/</a></p>
+<h2 id="四、Spring-Web-Flow"><a href="#四、Spring-Web-Flow" class="headerlink" title="四、Spring Web Flow"></a>四、Spring Web Flow</h2><h4 id="CVE-2017-4971"><a href="#CVE-2017-4971" class="headerlink" title="CVE-2017-4971"></a>CVE-2017-4971</h4><p><a href="https://github.com/cved-sources/cve-2017-4971.git" target="_blank" rel="noopener">https://github.com/cved-sources/cve-2017-4971.git</a></p>
+<h2 id="五、Spring-Security-Oauth2"><a href="#五、Spring-Security-Oauth2" class="headerlink" title="五、Spring Security Oauth2"></a>五、Spring Security Oauth2</h2><h4 id="CVE-2016-4977"><a href="#CVE-2016-4977" class="headerlink" title="CVE-2016-4977"></a>CVE-2016-4977</h4><p><a href="https://paper.seebug.org/70/" target="_blank" rel="noopener">https://paper.seebug.org/70/</a></p>
+<h4 id="CVE-2018-1260"><a href="#CVE-2018-1260" class="headerlink" title="CVE-2018-1260"></a>CVE-2018-1260</h4><p><a href="https://paper.seebug.org/597/" target="_blank" rel="noopener">https://paper.seebug.org/597/</a></p>
 
     </div>
 
@@ -355,9 +351,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/android%E5%AE%89%E5%85%A8/" rel="tag"># android安全</a>
-              <a href="/tags/smali%E4%BB%A3%E7%A0%81/" rel="tag"># smali代码</a>
-              <a href="/tags/APK%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" rel="tag"># APK逆向分析</a>
+              <a href="/tags/Spring%E6%BC%8F%E6%B4%9E/" rel="tag"># Spring漏洞</a>
           </div>
 
         
@@ -366,12 +360,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/" rel="prev" title="Android组件安全">
-      <i class="fa fa-chevron-left"></i> Android组件安全
+    <a href="/2019/05/12/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" rel="prev" title="PHP反序列化漏洞总结">
+      <i class="fa fa-chevron-left"></i> PHP反序列化漏洞总结
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/01/07/%E5%9F%BA%E4%BA%8Esection%E5%8A%A0%E5%AF%86%E7%9A%84-so%E5%8A%A0%E5%9B%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="基于section加密的.so加固学习笔记">
-      基于section加密的.so加固学习笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/05/%E8%9A%82%E8%9A%B1%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98/" rel="next" title="蚂蚱跳跃问题">
+      蚂蚱跳跃问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -433,7 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Studio调试smali代码"><span class="nav-number">1.</span> <span class="nav-text">Android Studio调试smali代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-number"></span> <span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用Android-Studio调试smali代码"><span class="nav-number"></span> <span class="nav-text">2. 使用Android Studio调试smali代码</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Spring-Boot相关漏洞"><span class="nav-number"></span> <span class="nav-text">一、Spring Boot相关漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Spring-cloud-config-server"><span class="nav-number">1.</span> <span class="nav-text">1. Spring cloud config server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2019-3799"><span class="nav-number">1.1.</span> <span class="nav-text">CVE-2019-3799</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2020-5405"><span class="nav-number">1.2.</span> <span class="nav-text">CVE-2020-5405</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Spring-boot-actuator"><span class="nav-number">2.</span> <span class="nav-text">2. Spring boot actuator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Spring-messaging"><span class="nav-number"></span> <span class="nav-text">二、Spring messaging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-1270"><span class="nav-number">0.1.</span> <span class="nav-text">CVE-2018-1270</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-1275"><span class="nav-number">0.2.</span> <span class="nav-text">CVE-2018-1275</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Spring-data"><span class="nav-number"></span> <span class="nav-text">三、Spring data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2017-8046"><span class="nav-number">0.1.</span> <span class="nav-text">CVE-2017-8046</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-1273"><span class="nav-number">0.2.</span> <span class="nav-text">CVE-2018-1273</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-1259"><span class="nav-number">0.3.</span> <span class="nav-text">CVE-2018-1259</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Spring-Web-Flow"><span class="nav-number"></span> <span class="nav-text">四、Spring Web Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2017-4971"><span class="nav-number">0.1.</span> <span class="nav-text">CVE-2017-4971</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Spring-Security-Oauth2"><span class="nav-number"></span> <span class="nav-text">五、Spring Security Oauth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2016-4977"><span class="nav-number">0.1.</span> <span class="nav-text">CVE-2016-4977</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CVE-2018-1260"><span class="nav-number">0.2.</span> <span class="nav-text">CVE-2018-1260</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
