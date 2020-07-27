@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/12148927?s=400&u=db4cba304b11bb561b4be7f7dd95ee1a06568e7e&v=4">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">Android组件安全</a>
+            <a href="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">Android Studio调试smali代码</a>
         </h2>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-05 21:24:56 / 修改时间：21:25:38" itemprop="dateCreated datePublished" datetime="2020-01-05T21:24:56+08:00">2020-01-05</time>
+              <time title="创建时间：2020-01-05 21:27:12 / 修改时间：21:30:16" itemprop="dateCreated datePublished" datetime="2020-01-05T21:27:12+08:00">2020-01-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
             </span>
 
           
-            <span id="/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/" class="post-meta-item leancloud_visitors" data-flag-title="Android组件安全" title="阅读次数">
+            <span id="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/" class="post-meta-item leancloud_visitors" data-flag-title="Android Studio调试smali代码" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/Android%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/Android-Studio%E8%B0%83%E8%AF%95smali%E4%BB%A3%E7%A0%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,14 +259,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -278,87 +278,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Android组件安全"><a href="#Android组件安全" class="headerlink" title="Android组件安全"></a><strong>Android组件安全</strong></h2><p>做过Android开发的攻城狮都知道Android四大组件，在开发过程中打交道最多的也是这四大组件，在开发Android应用的过程中我们最基本的要求是要对这四大组件有一个清晰的认识，包括组件的功能特性、生命周期、与系统的交互模型，以及组件之间如何配合使用等等。本文内容主要是关于组件的安全模型以及如何正确的使用组件来降低应用的安全风险的一个学习笔记。</p>
-<h3 id="一、Android四大组件简介"><a href="#一、Android四大组件简介" class="headerlink" title="一、Android四大组件简介"></a><strong>一、Android四大组件简介</strong></h3><h4 id="1-Service组件"><a href="#1-Service组件" class="headerlink" title="1. Service组件"></a><strong>1. Service组件</strong></h4><p>Service是没有界面且能长时间运行于后台的应用组件，是Android中实现程序后台运行的解决方案，非常适合用于去执行那些不需要和用户交互而且还要求长期运行的任务。这也是为了不阻塞主进程，然而主进程依然能够流畅的处理UI事件，提供良好的用户体验。</p>
-<p>根据Service的生命周期不同又分为两种类型：</p>
-<pre><code>（1）start类型：应用程序组件（如activity）调用startService()方法启动服务时，服务处于started状态
-（2）bound类型：组件调用bindService()方法绑定到服务时，服务处于bound状态</code></pre><p><strong>两者的区别：</strong>调用startService()启动的Service其生命周期与启动它的组件无关，调用bindService()启动的Service会在启动它的组件消亡后消亡</p>
-<p><strong>1.1 Service安全</strong></p>
-<p>关于Service安全规范请参照博客：<a href="http://www.droidsec.cn/android-service-security/" target="_blank" rel="noopener">http://www.droidsec.cn/android-service-security/</a></p>
-<h4 id="2-Activity组件"><a href="#2-Activity组件" class="headerlink" title="2. Activity组件"></a><strong>2. Activity组件</strong></h4><p>Activity是一个Android应用程序和用户进行交互界面的Android组件，相当于应用程序的一个交互屏幕，Activity之间通过Intent进行通信。下图是Activity的生命周期变迁图</p>
-<p><strong>2.1 Activity生命周期</strong></p>
-<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-bXGiHv3W-1578230663807)(<a href="http://i.imgur.com/CH4adYo.jpg)]" target="_blank" rel="noopener">http://i.imgur.com/CH4adYo.jpg)]</a></p>
-<p><strong>onCreate :</strong> Activity被创建时调用，是生命周期第一个被调用的方法</p>
-<p><strong>onStart :</strong>表示Activity正在启动，还没有到达可见、交互的地步</p>
-<p><strong>onResume :</strong>表示Activity已在前台可见，可与用户交互</p>
-<p><strong>onPause :</strong> 表示Activity正在停止</p>
-<p><strong>onStop :</strong> 一般在onPause方法执行完成直接执行，表示Activity即将停止或者完全被覆盖，此时Activity不可见，仅在后台运行</p>
-<p><strong>onRestart :</strong>表示Activity正在重新启动，当Activity由不可见变为可见状态时，该方法被回调</p>
-<p><strong>onDestroy :</strong>此时Activity正在被销毁，也是生命周期最后一个执行的方法，一般我们可以在此方法中做一些回收工作和最终的资源释放。</p>
-<p><strong>2.2 Activity组件的加载模式</strong></p>
-<ul>
-<li><strong>standard模式</strong>：无论Activity栈中是否存在改Activity实例，系统都将创建一个实例</li>
-<li><strong>singleTop模式</strong>：如果目标activity的实例已经存在于栈顶，系统会直接使用该实例，不会重新创建，否则会创建一个实例，入栈</li>
-<li><strong>singleTask模式</strong>：在同一应用程序中，如果目标activity的实例已经存在于栈顶，系统会直接使用该实例，不会重新创建，否则弹出栈顶实例，直到使目标activity位于栈顶，在不同应用程序中启动Activity时，会创建一个新的task栈，用于保存被启动的Activity实例</li>
-<li><strong>singleInstance模式</strong>：只有一个实例，并且这个实例独立运行在一个task栈中，这个task只有这个实例，不允许有别的Activity存在</li>
-</ul>
-<p><strong>2.2 Activity组件权限</strong></p>
-<p>Activity权限的使用主要用于从其他应用中调用该应用的Activity进行一些操作，比如第三方登录：进行权限的设置后可以调用该应用中的Activity进行操作。下图是权限的格式定义：</p>
-<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-SAbH4nAO-1578230663808)(<a href="http://i.imgur.com/MSPOUeC.png)]" target="_blank" rel="noopener">http://i.imgur.com/MSPOUeC.png)]</a></p>
-<pre><code>android:protectionLevel 一共有四种</code></pre><ul>
-<li><p><strong>normal：</strong>表示权限是低风险的，不会对系统、用户或其他应用程序造成危害</p>
-</li>
-<li><p><strong>dangerous：</strong>比normal级别要高一等级,可能会赋予应用程序访问敏感数据或控制设备等功能</p>
-</li>
-<li><p><strong>signature：</strong>表示只有当应用程序所用数字签名与声明该权限的应用程序所用数字签名相同时，才能将权限授给它</p>
-</li>
-<li><p><strong>signatureOrSystem ：</strong>表示将权限授给具有相同数字签名的应用程序或android 系统映像/系统app。这一保护级别适和于非常特殊的情况，比如多个供应商需要通过系统映像共享功能时</p>
-</li>
-</ul>
-<p><strong>2.2 exported属性</strong></p>
-<p>一个Activity组件能否被外部应用启动取决于此属性，设置为true时Activity可以被外部应用启动，设置为false则不能，此时Activity只能被自身app启动。（同user id或者root也能启动）</p>
-<p>没有配置intent-filter属性exported默认为false（没有filter只能通过明确的类名来启动activity故相当于只有程序本身能启动），配置了intent-filter属性exported默认为true。</p>
-<p>exported属性只是用于限制Activity是否暴露给其他app，通过配置文件中的权限申明也可以限制外部启动activity。</p>
-<p><strong>2.3 activity的声明</strong></p>
-<pre><code>&lt;activity
-        android:name=&quot;Activity&quot;
-        android:label=&quot;@string/title_activity&quot;
-        android:permission=&quot;packagename.permission.Activity&quot;
-        &gt;
-        &lt;intent-filter&gt;
-            &lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;
-            &lt;action android:name=&quot;packagename.intent.action.Activity&quot;/&gt;
-        &lt;/intent-filter&gt;
-    &lt;/activity&gt;</code></pre><p>配置了intent-filter属性，则exported为true，说明别的应用程序可以在外部启动该Activity，可根据action的name发起隐式intent，启动声明了该action的Activity</p>
-<p><strong>2.4 activity的分类</strong></p>
-<p><strong>2.4.1 private activity</strong></p>
-<p>私有Activity不应被其他应用启动相对是安全的<br>关于private activity的使用和设置规范请参照：<a href="http://www.bugsec.org/7195.html" target="_blank" rel="noopener">http://www.bugsec.org/7195.html</a></p>
-<p><strong>2.4.2 public activity</strong></p>
-<p>公开暴露的Activity组件，可以被任意应用启动<br>关于public activity的使用和设置规范请参照：<a href="http://www.bugsec.org/7195.html" target="_blank" rel="noopener">http://www.bugsec.org/7195.html</a></p>
-<h4 id="3-Broadcast-Recevier组件"><a href="#3-Broadcast-Recevier组件" class="headerlink" title="3. Broadcast Recevier组件"></a><strong>3. Broadcast Recevier组件</strong></h4><p>Broadcast Recevier 广播接收器是一个专注于接收广播通知信息，并做出对应处理的组件，广播机制是一个典型的发布—订阅模式，即观察者模式。 广播接收器没有用户界面。然而，它们可以启动一个activity来响应它们收到的信息，或者用NotificationManager来通知用户。通知可以用很多种方式来吸引用户的注意力──闪动背灯、震动、播放声音等等。一般来说是在状态栏上放一个持久的图标，用户可以打开它并获取消息。</p>
-<p><strong>3.1 广播注册形式</strong></p>
-<p><strong>静态注册：</strong></p>
-<p>静态注册是在AndroidManifest.xml中声明广播注册，直接在Manifest.xml文件的<application>节点中配置广播接收者。</p>
-<pre><code>&lt;receiver android:name=&quot;.MyBroadCastReceiver&quot;&gt;  
-        &lt;!-- android:priority属性是设置此接收者的优先级（从-1000到1000） --&gt;
-        &lt;intent-filter android:priority=&quot;20&quot;&gt;
-        &lt;actionandroid:name=&quot;android.provider.Telephony.SMS_RECEIVED&quot;/&gt;  
-        &lt;/intent-filter&gt;  
-&lt;/receiver&gt;</code></pre><p>还要在<application>同级的位置配置可能使用到的权限</p>
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.RECEIVE_SMS&quot;&gt;&lt;/uses-permission&gt;</code></pre><p><strong>动态注册：</strong></p>
-<p>通过使用代码进行注册</p>
-<p><strong>区别：</strong></p>
-<ul>
-<li><p>第一种是常驻型，也就是说当应用程序关闭后，如果有信息广播来，程序也会被系统调用自动运行</p>
-</li>
-<li><p>第二种是非常驻型广播，也就是说广播跟随程序的生命周期</p>
-</li>
-</ul>
-<p>关于Broadcast Recevier安全编码规范，参照：<a href="http://www.droidsec.cn/android-broadcast-security/" target="_blank" rel="noopener">http://www.droidsec.cn/android-broadcast-security/</a></p>
-<h4 id="3-Content-Provider组件"><a href="#3-Content-Provider组件" class="headerlink" title="3. Content Provider组件"></a><strong>3. Content Provider组件</strong></h4><p>为存储和获取数据提供统一的接口，可以在不同的应用程序之间共享数据。使用ContentProvider，应用程序可以实现数据共享，android内置的许多数据都是使用ContentProvider形式，供开发者调用的(如视频，音频，图片，通讯录等)</p>
-<p>关于Content Provider组件的安全问题，参照：<a href="http://blog.csdn.net/alimobilesecurity/article/details/51564968" target="_blank" rel="noopener">http://blog.csdn.net/alimobilesecurity/article/details/51564968</a></p>
-<h3 id="参考博文"><a href="#参考博文" class="headerlink" title="参考博文"></a><strong>参考博文</strong></h3><p><a href="http://www.cnblogs.com/smyhvae/p/4070518.html" target="_blank" rel="noopener">http://www.cnblogs.com/smyhvae/p/4070518.html</a></p>
-<p><a href="http://blog.csdn.net/javazejian/article/details/51932554" target="_blank" rel="noopener">http://blog.csdn.net/javazejian/article/details/51932554</a></p>
+          <h3 id="Android-Studio调试smali代码"><a href="#Android-Studio调试smali代码" class="headerlink" title="Android Studio调试smali代码"></a>Android Studio调试smali代码</h3><p>标签： APK逆向分析</p>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>经过一段时间的学习，现在总结下针对APK逆向的一些基本调试技术，以阿里移动安全比赛题目为例</p>
+<h2 id="2-使用Android-Studio调试smali代码"><a href="#2-使用Android-Studio调试smali代码" class="headerlink" title="2. 使用Android Studio调试smali代码"></a>2. 使用Android Studio调试smali代码</h2><p>步骤一：下载安全Android Stuio,下载地址<a href="http://www.android-studio.org/" target="_blank" rel="noopener">http://www.android-studio.org/</a></p>
+<p>步骤二：下载插件smalidea<br>地址: <a href="https://bitbucket.org/JesusFreke/smali/downloads" target="_blank" rel="noopener">https://bitbucket.org/JesusFreke/smali/downloads</a></p>
+<p>步骤三：下载完成后，打开Android studio的Settings——&gt;Plugins，选择 Install plugin from disk</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNjUzMDA3?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>步骤四：反编译apk，修改AndroidManifest.xml文件的属性android:debuggable=”true”</p>
+<pre><code>java -jar apktool.jar d -d ./apk/AliCrackme_1.apk -o out</code></pre><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzEzMzk0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>修改完成之后，回编译apk</p>
+<pre><code>java -jar apktool.jar b -d out -o debug.apk</code></pre><p>回编之后，进行签名</p>
+<pre><code>java -jar .\sign\signapk.jar .\sign\testkey.x509.pem .\sign\testkey.pk8 debug.apk debug.sig.apk</code></pre><p>步骤五：安装签名之后的应用</p>
+<pre><code>adb install debug.sig.apk</code></pre><p>使用backsmali得到apk的smali代码</p>
+<pre><code>java -jar backsmali.jar debug.sig.apk</code></pre><p>将得到的smali代码导入Android Studio中</p>
+<p>步骤六：配置远程调试的选项，选择Run–&gt;Edit Configurations：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzM4NzA0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>增加一个Remote调试的调试选项，端口选择:8700</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzNzU3OTg4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>步骤七：下好断点，针对本APK我们在button的onclik函数出下断点（点击鼠标右键）</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzODI0Nzg2?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>步骤八：以调试状态启动app</p>
+<pre><code>adb shell am start -D -n com.example.simpleencryption/.MainActivity</code></pre><p>下好断点之后Run-&gt;Debug<br>执行完</p>
+<pre><code>invoke-virtual {v6}, Lcom/example/simpleencryption/MainActivity;-&gt;getTableFromPic()Ljava/lang/String;</code></pre><p>得到图6内容</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTE5MzM4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>通过分析我们大体知道个整个函数的执行逻辑</p>
+<ol>
+<li>通过MainActivity中的getTableFromPic方法，获取一个类似密码表的东西</li>
+<li>通过MainActivity中的getPwdFromPic方法，获取正确的密码”义弓么丸广之”</li>
+<li>获取我们输入内容的utf-8的字节码，然后调用MainActivity的access$0方法，获取加密之后的内容</li>
+</ol>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDgzOTQzNzIy?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<ol start="4">
+<li>再看MainActivity的access$0方法的实现</li>
+</ol>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MDE0MTcw?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>里面又调用了bytesToAliSmsCode，传了两个参数，一个是我们输入的qwer的bytes数组，一个是获取的密码表</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzE5MDg0MTI3Mzk5?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>具体的逻辑如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">.method private static bytesToAliSmsCode(Ljava&#x2F;lang&#x2F;String;[B)Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">    .registers 5</span><br><span class="line">    .param p0, &quot;table&quot;    # Ljava&#x2F;lang&#x2F;String;</span><br><span class="line">    .param p1, &quot;data&quot;    # [B</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line 144</span><br><span class="line">    new-instance v1, Ljava&#x2F;lang&#x2F;StringBuilder;</span><br><span class="line"></span><br><span class="line">    invoke-direct &#123;v1&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    .line 145</span><br><span class="line">    .local v1, &quot;sb&quot;:Ljava&#x2F;lang&#x2F;StringBuilder;    &#x2F;&#x2F;创建一个StringBuilder的变量sb</span><br><span class="line">    const&#x2F;4 v0, 0x0</span><br><span class="line"></span><br><span class="line">    .local v0, &quot;i&quot;:I    &#x2F;&#x2F; 定义一个int变量i &#x3D; 0</span><br><span class="line">    :goto_6</span><br><span class="line">    array-length v2, p1</span><br><span class="line"></span><br><span class="line">    if-lt v0, v2, :cond_e   &#x2F;&#x2F; 比较i和data数组的长度，如果小于，跳到cond_e</span><br><span class="line"></span><br><span class="line">    .line 148</span><br><span class="line">    invoke-virtual &#123;v1&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;toString()Ljava&#x2F;lang&#x2F;String;</span><br><span class="line"></span><br><span class="line">    move-result-object v2</span><br><span class="line"></span><br><span class="line">    return-object v2</span><br><span class="line"></span><br><span class="line">    .line 146</span><br><span class="line">    :cond_e</span><br><span class="line">    aget-byte v2, p1, v0   &#x2F;&#x2F; 取出data[i]</span><br><span class="line"></span><br><span class="line">    and-int&#x2F;lit16 v2, v2, 0xff</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v2&#125;, Ljava&#x2F;lang&#x2F;String;-&gt;charAt(I)C   &#x2F;&#x2F; 获取data[i]在table数组的字符</span><br><span class="line"></span><br><span class="line">    move-result v2</span><br><span class="line">    &#x2F;&#x2F; 调用sb的append函数进行拼接</span><br><span class="line">    invoke-virtual &#123;v1, v2&#125;, Ljava&#x2F;lang&#x2F;StringBuilder;-&gt;append(C)Ljava&#x2F;lang&#x2F;StringBuilder;</span><br><span class="line"></span><br><span class="line">    .line 145</span><br><span class="line">    add-int&#x2F;lit8 v0, v0, 0x1</span><br><span class="line"></span><br><span class="line">    goto :goto_6</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<p>整体逻辑就是一个循环，将输入字符转化为utf-8格式的bye数组，然后取出data[i]table表中所对应的字符，然后拼接返回<br> 5. 返回字符串与正确密码”义弓么丸广之”比较<br> invoke-virtual {v4, v6}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z<br> 此时我们输入的qwer加密后与”义弓么丸广之”<br>肯定不相等，所以这里我们可以想办法是的输入的字符串加密等于”义弓么丸广之”</p>
+<p><strong>怎么办呢？</strong></p>
+<p>我们可以将bytesToAliSmsCode进行反向实现，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[])&#123;</span><br><span class="line">		String table &#x3D; &quot;一乙二十丁厂七卜人入八九几儿了力乃刀又三于干亏士工土才寸下大丈与万上小口巾山千乞川亿个勺久凡及夕丸么广亡门义之尸弓己已子卫也女飞刃习叉马乡丰王井开夫天无元专云扎艺木五支厅不太犬区历尤友匹车巨牙屯比互切瓦止少日中冈贝内水见午牛手毛气升长仁什片仆化仇币仍仅斤爪反介父从今凶分乏公仓月氏勿欠风丹匀乌凤勾文六方火为斗忆订计户认心尺引丑巴孔队办以允予劝双书幻玉刊示末未击打巧正扑扒功扔去甘世古节本术可丙左厉右石布龙平灭轧东卡北占业旧帅归且旦目叶甲申叮电号田由史只央兄叼叫另叨叹四生失禾丘付仗代仙们仪白仔他斥瓜乎丛令用甩印乐&quot;;</span><br><span class="line">		String dataString &#x3D; &quot;义弓么丸广之&quot;;</span><br><span class="line">		String passwd  &#x3D; &quot;&quot;;</span><br><span class="line">		for(int i &#x3D; 0 ; i &lt; dataString.length(); i++)&#123;</span><br><span class="line">			passwd +&#x3D; (char)table.indexOf(dataString.charAt(i));</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;passwd &#x3D; &quot; + passwd);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行出的结果为passwd = 581026就是我们输入框里面要输入的字符串</p>
 
       
     </div>

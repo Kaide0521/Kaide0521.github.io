@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/05/%E6%89%A9%E5%B1%95KMP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/12148927?s=400&u=db4cba304b11bb561b4be7f7dd95ee1a06568e7e&v=4">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/05/KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">KMP算法的理解</a>
+            <a href="/2020/01/05/%E6%89%A9%E5%B1%95KMP/" class="post-title-link" itemprop="url">扩展KMP</a>
         </h2>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-05 21:17:09 / 修改时间：21:17:36" itemprop="dateCreated datePublished" datetime="2020-01-05T21:17:09+08:00">2020-01-05</time>
+              <time title="创建时间：2020-01-05 21:18:04 / 修改时间：21:18:34" itemprop="dateCreated datePublished" datetime="2020-01-05T21:18:04+08:00">2020-01-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
             </span>
 
           
-            <span id="/2020/01/05/KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="KMP算法的理解" title="阅读次数">
+            <span id="/2020/01/05/%E6%89%A9%E5%B1%95KMP/" class="post-meta-item leancloud_visitors" data-flag-title="扩展KMP" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/05/KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/KMP%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/05/%E6%89%A9%E5%B1%95KMP/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/05/%E6%89%A9%E5%B1%95KMP/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,14 +259,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -278,26 +278,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="KMP算法的理解"><a href="#KMP算法的理解" class="headerlink" title="KMP算法的理解"></a>KMP算法的理解</h2><ul>
-<li>KMP算法的核心思想</li>
-<li>KMP算法的实现原理</li>
-<li>KMP算法的编程实现</li>
-<li>KMP的改进</li>
+          <h2 id="扩展KMP"><a href="#扩展KMP" class="headerlink" title="扩展KMP"></a>扩展KMP</h2><ul>
+<li><p>什么是扩展KMP</p>
+</li>
+<li><p>扩展KMP的原理</p>
+</li>
+<li><p>扩展KMP的编程实现</p>
+</li>
+<li><p>扩展KMP的用途</p>
+</li>
 </ul>
-<h3 id="KMP算法的核心思想"><a href="#KMP算法的核心思想" class="headerlink" title="KMP算法的核心思想"></a>KMP算法的核心思想</h3><p>kmp算法的核心即是计算模式串的每一个位置之前的字符串的前缀和后缀公共部分的最大长度（不包括字符串本身，否则最大长度始终是字符串本身）</p>
-<h3 id="KMP算法的编程实现"><a href="#KMP算法的编程实现" class="headerlink" title="KMP算法的编程实现"></a>KMP算法的编程实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">void get_next(char *T, int *next)  </span><br><span class="line">&#123;  </span><br><span class="line">    int k &#x3D; -1;  </span><br><span class="line">    int j &#x3D; 0;  </span><br><span class="line">    next[j] &#x3D; k;  </span><br><span class="line">    while (j &lt; strlen(T))  </span><br><span class="line">    &#123;  </span><br><span class="line">        if ( (k &#x3D;&#x3D; -1) || (T[j] &#x3D;&#x3D; T[k]) ) &#x2F;&#x2F;注意等号是&#x3D;&#x3D;，而不是&#x3D;  </span><br><span class="line">        &#123;  </span><br><span class="line">            ++k; &#x2F;&#x2F; 注意是先加后使用  </span><br><span class="line">            ++j;  </span><br><span class="line">            next[j] &#x3D; k;  </span><br><span class="line">        &#125;  </span><br><span class="line">        else  </span><br><span class="line">        &#123;  </span><br><span class="line">            k &#x3D; next[k];   </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="KMP的改进"><a href="#KMP的改进" class="headerlink" title="KMP的改进"></a>KMP的改进</h3><p>注意到，上面的getNext函数还存在可以优化的地方，比如：</p>
-<p>S: a   a   a   b   a   a   a   a   b</p>
-<p>P: a   a   a   a   b</p>
-<p>此时，i=3、j=3时发生失配，next[3]=2，此时还需要进行 3 次比较：</p>
-<p>i=3, j=2;  </p>
-<p>i=3, j=1;  </p>
-<p>i=3, j=0。</p>
-<p>而实际上，因为i=3, j=3时就已经知道a!=b，而之后的三次依旧是拿 a 和 b 比较，因此这三次比较都是多余的。</p>
-<p>此时应当直接将P向右滑动4个字符，进行 i=4， j=0的比较。</p>
-<p>一般而言，在getNext函数中，next[i]=j，也就是说当p[i]与S中某个字符匹配失败的时候，用p[j]继续与S中的这个字符比较。但是如果p[i]==p[j]，那么这次比较是多余的，因为p[i]与母串中的字符不匹配，那么p[j]==p[i]那么一定也和母串的字符不匹配，因此比较是多余的，此时应该直接使next[i]=next[j]。</p>
-<p>完整的实现代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">void getNextUpdate(const std::string&amp; p, std::vector&lt;int&gt;&amp; next)</span><br><span class="line">&#123;</span><br><span class="line">    next.resize(p.size());</span><br><span class="line">    next[0] &#x3D; -1;</span><br><span class="line">    int i &#x3D; 0, j &#x3D; -1;</span><br><span class="line">    while (i !&#x3D; p.size() - 1)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;这里注意，i&#x3D;&#x3D;0的时候实际上求的是nextVector[1]的值，以此类推</span><br><span class="line">        if (j &#x3D;&#x3D; -1 || p[i] &#x3D;&#x3D; p[j])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            &#x2F;&#x2F;注意这里是++i和++j之后的p[i]、p[j]</span><br><span class="line">            next[i] &#x3D; p[i] !&#x3D; p[j] ? j : next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            j &#x3D; next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="参照-http-blog-csdn-net-dyx404514-article-details-41831947"><a href="#参照-http-blog-csdn-net-dyx404514-article-details-41831947" class="headerlink" title="参照 ++http://blog.csdn.net/dyx404514/article/details/41831947++"></a>参照 ++<a href="http://blog.csdn.net/dyx404514/article/details/41831947++" target="_blank" rel="noopener">http://blog.csdn.net/dyx404514/article/details/41831947++</a></h6><hr>
+<h3 id="1-什么是扩展KMP"><a href="#1-什么是扩展KMP" class="headerlink" title="1 什么是扩展KMP"></a>1 什么是扩展KMP</h3><p>给出模板串S和T，长度分别为Slen和Tlen，要求在线性时间内，对于每个S[i]（0&lt;=i&lt;Slen），</p>
+<p>求出S[i..Slen-1]与T的最长公共前缀长度，记为extend[i]</p>
+<p>（或者说，extend[i]为满足S[i..i+z-1]==T[0..z-1]的最大的z值）。</p>
+<p>扩展KMP可以用来解决很多字符串问题，如求一个字符串的最长回文子串和最长重复子串。</p>
+<h3 id="2-扩展KMP的原理"><a href="#2-扩展KMP的原理" class="headerlink" title="2 扩展KMP的原理"></a>2 扩展KMP的原理</h3><pre><code>记母串为S,模式串为T，next[i]表示模式串S的后缀</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T[i...len(T)]</span><br></pre></td></tr></table></figure>
+<pre><code>与模式串T的最长公共前缀。记为extend[i]为满足</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S[i..i+z-1]&#x3D;T[0..z-1]</span><br></pre></td></tr></table></figure>
+<pre><code>的最大的z值，即S串以i开头的后缀与T的最长公共前缀。</code></pre><h4 id="2-1-拓展kmp算法一般步骤"><a href="#2-1-拓展kmp算法一般步骤" class="headerlink" title="2.1 拓展kmp算法一般步骤"></a>2.1 拓展kmp算法一般步骤</h4><p>首先我们从左到右依次计算extend数组，在某一时刻，设extend[0…k]已经计算完毕，并且之</p>
+<p>前匹配过程中所达到的最远位置为P，所谓最远位置，严格来说就是i+extend[i]-1的最大值</p>
+<p>（0&lt;=i&lt;=k）,并且设取这个最大值的位置为P</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">S ：0......p0.....k k+1......p.......len(s) 现在要计算extend[k+1],根据extend的定义</span><br><span class="line"></span><br><span class="line">有S[p0....p] &#x3D; T[0...p-p0] ——&gt; S[k+1,P] &#x3D; T[k-p0+1,P-po]</span><br><span class="line"></span><br><span class="line">令 len &#x3D; next[k-p0+1]</span><br><span class="line"></span><br><span class="line">（前面介绍了next数组的含义,表示T串与T[k-p0+1,len(T)]的最长公共前缀）;</span><br><span class="line"></span><br><span class="line">下面通过两种情况讨论：</span><br><span class="line"></span><br><span class="line">    1. if k+len &lt; P : </span><br><span class="line">            </span><br><span class="line">        S[k+1,k+len] &#x3D; T[0,len] ——&gt; 则S[k+len+1]一定与T[len]不相等，为什么呢？</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F; 因为T[k-p0+1+len] &#x3D; S[k+1+len]，由next数组可知T[k-p0+1+len-1] &#x3D; T[len-1]</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; T[k-p0+1+len] ！&#x3D; T[len] ——&gt; S[k+len+1] !&#x3D;  T[len] </span><br><span class="line">        </span><br><span class="line">        即 extend[k+1] &#x3D; len</span><br><span class="line">        </span><br><span class="line">    2. if k + len &gt; p : </span><br><span class="line">    </span><br><span class="line">        S[p+1]之后的字符都是未知的，也就是还未进行过匹配的字符串，</span><br><span class="line">        </span><br><span class="line">        所以在这种情况下，就要从S[P+1]和T[P-k+1]开始一一匹配，直到发生失配为止，</span><br><span class="line">        </span><br><span class="line">        当匹配完成后，如果得到的extend[k+1]+(k+1)大于P则要更新未知P和p0</span><br><span class="line"></span><br><span class="line">    至此，拓展kmp算法的过程已经描述完成</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展KMP的编程实现"><a href="#扩展KMP的编程实现" class="headerlink" title="扩展KMP的编程实现"></a>扩展KMP的编程实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">const int maxn&#x3D;100010;   &#x2F;&#x2F;字符串长度最大值  </span><br><span class="line">int next[maxn],ex[maxn]; &#x2F;&#x2F;ex数组即为extend数组  </span><br><span class="line">&#x2F;&#x2F;预处理计算next数组  </span><br><span class="line">void GETNEXT(char *str)  </span><br><span class="line">&#123;  </span><br><span class="line">    int i &#x3D; 0,j,po,len&#x3D;strlen(str);  </span><br><span class="line">    next[0] &#x3D; len;&#x2F;&#x2F;初始化next[0]  </span><br><span class="line">    while( str[i] &#x3D;&#x3D; str[i+1] &amp;&amp; i+1 &lt; len)&#x2F;&#x2F;计算next[1]  </span><br><span class="line">    i++;  </span><br><span class="line">    next[1] &#x3D; i;  </span><br><span class="line">    po &#x3D; 1;&#x2F;&#x2F;初始化po的位置  </span><br><span class="line">    for( i &#x3D; 2; i &lt; len; i++ )  </span><br><span class="line">    &#123;  </span><br><span class="line">        if( next[i-po]+i &lt; next[po]+po )&#x2F;&#x2F;第一种情况，可以直接得到next[i]的值  </span><br><span class="line">        next[i] &#x3D; next[i-po];  </span><br><span class="line">        else&#x2F;&#x2F;第二种情况，要继续匹配才能得到next[i]的值  </span><br><span class="line">        &#123;  </span><br><span class="line">            j &#x3D; next[po]+po-i;  </span><br><span class="line">            if( j &lt; 0 )j &#x3D; 0;&#x2F;&#x2F;如果i&gt;po+next[po],则要从头开始匹配  </span><br><span class="line">            while( i+j &lt; len &amp;&amp; str[j] &#x3D;&#x3D; str[j+i] )&#x2F;&#x2F;计算next[i]  </span><br><span class="line">            j++;  </span><br><span class="line">            next[i] &#x3D; j;  </span><br><span class="line">            po &#x3D; i;&#x2F;&#x2F;更新po的位置  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">&#x2F;&#x2F;计算extend数组  </span><br><span class="line">void EXKMP(char *s1,char *s2)  </span><br><span class="line">&#123;  </span><br><span class="line">    int i &#x3D; 0,j,po,len &#x3D; strlen(s1),l2 &#x3D; strlen(s2);  </span><br><span class="line">    GETNEXT(s2);&#x2F;&#x2F;计算子串的next数组  </span><br><span class="line">    while ( s1[i] &#x3D;&#x3D; s2[i] &amp;&amp; i &lt; l2 &amp;&amp; i &lt; len )&#x2F;&#x2F;计算ex[0]  </span><br><span class="line">    i++;  </span><br><span class="line">    ex[0] &#x3D; i;  </span><br><span class="line">    po &#x3D; 0;&#x2F;&#x2F;初始化po的位置  </span><br><span class="line">    for( i &#x3D; 1; i &lt; len; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        if( next[i-po]+i &lt; ex[po]+po )&#x2F;&#x2F;第一种情况，直接可以得到ex[i]的值  </span><br><span class="line">        ex[i] &#x3D; next[i-po];  </span><br><span class="line">        else&#x2F;&#x2F;第二种情况，要继续匹配才能得到ex[i]的值  </span><br><span class="line">        &#123;  </span><br><span class="line">            j &#x3D; ex[po]+po-i;  </span><br><span class="line">            if( j &lt; 0 ) j &#x3D; 0;&#x2F;&#x2F;如果i&gt;ex[po]+po则要从头开始匹配  </span><br><span class="line">            while( i+j &lt; len &amp;&amp; j &lt; l2 &amp;&amp; s1[j+i] &#x3D;&#x3D; s2[j] )&#x2F;&#x2F;计算ex[i]  </span><br><span class="line">            j++;  </span><br><span class="line">            ex[i] &#x3D; j;  </span><br><span class="line">            po &#x3D; i;&#x2F;&#x2F;更新po的位置  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 

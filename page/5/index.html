@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kaide0521.cn/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E8%BF%87%E5%8F%8D%E8%B0%83%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/12148927?s=400&u=db4cba304b11bb561b4be7f7dd95ee1a06568e7e&v=4">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/" class="post-title-link" itemprop="url">IDA Pro脱dex壳初探</a>
+            <a href="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E8%BF%87%E5%8F%8D%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">IDA Pro脱dex壳过反调试</a>
         </h2>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-07 21:45:43 / 修改时间：21:55:34" itemprop="dateCreated datePublished" datetime="2020-01-07T21:45:43+08:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 21:47:34 / 修改时间：21:48:14" itemprop="dateCreated datePublished" datetime="2020-01-07T21:47:34+08:00">2020-01-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
             </span>
 
           
-            <span id="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/" class="post-meta-item leancloud_visitors" data-flag-title="IDA Pro脱dex壳初探" title="阅读次数">
+            <span id="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E8%BF%87%E5%8F%8D%E8%B0%83%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="IDA Pro脱dex壳过反调试" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E5%88%9D%E6%8E%A2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E8%BF%87%E5%8F%8D%E8%B0%83%E8%AF%95/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/07/IDA-Pro%E8%84%B1dex%E5%A3%B3%E8%BF%87%E5%8F%8D%E8%B0%83%E8%AF%95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -259,14 +259,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -278,46 +278,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="IDA-Pro脱dex壳初探"><a href="#IDA-Pro脱dex壳初探" class="headerlink" title="IDA Pro脱dex壳初探"></a>IDA Pro脱dex壳初探</h3><p>标签（空格分隔）： Apk逆向</p>
+          <h3 id="IDA-Pro脱dex壳过反调试"><a href="#IDA-Pro脱dex壳过反调试" class="headerlink" title="IDA Pro脱dex壳过反调试"></a>IDA Pro脱dex壳过反调试</h3><p>标签（空格分隔）： Apk逆向</p>
 <hr>
-<h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p>关于IDA Pro的介绍，已不用多说了，是目前最棒的一个静态反编译软件，编程天才的杰作。这里的脱壳实战我们以阿里比赛样本AliCrackme_3.apk样本为例。</p>
-<h3 id="2-调试环境的搭建"><a href="#2-调试环境的搭建" class="headerlink" title="2. 调试环境的搭建"></a>2. 调试环境的搭建</h3><h4 id="2-1-安装IDA-Pro"><a href="#2-1-安装IDA-Pro" class="headerlink" title="2.1 安装IDA Pro"></a><strong>2.1 安装IDA Pro</strong></h4><p>[下载地址][1]<br>直接解压运行</p>
-<h4 id="2-2-使用IDA进行调试设置"><a href="#2-2-使用IDA进行调试设置" class="headerlink" title="2.2 使用IDA进行调试设置"></a><strong>2.2 使用IDA进行调试设置</strong></h4><p>在IDA安装目录dbgsrv下获取android_server命令文件<br>运行命令：</p>
-<pre><code>adb root
-adb remount
-adb push android_server /data   #将文件拷贝到手机data目录
-adb shell
-cd /data
-chmod 755 android_server    #更改权限，赋予可执行权限
-./android_server            #运行
-root@Che1:/data # ./android_server
-IDA Android 32-bit remote debug server(ST) v1.17. Hex-Rays (c)     2004-2014
-Listening on port #23946...</code></pre><p>错误1：error: only position independent executables (PIE) are supported<br>这个主要是Android5.0以上的编译选项默认开启了pie，在5.0以下编译的原生应用不能运行，有两种解决办法，一种是用Android5.0以下的手机进行操作，还有一种就是用IDA6.6+版本即可。</p>
-<h4 id="2-3-配置端口转发"><a href="#2-3-配置端口转发" class="headerlink" title="2.3 配置端口转发"></a><strong>2.3 配置端口转发</strong></h4><p>这里开始监听了设备的23946端口，那么如果要想让IDA和这个android_server进行通信，那么必须让PC端的IDA也连上这个端口，那么这时候就需要借助于adb的一个命令了：<br><strong>adb forward tcp:远端设备端口号(进行调试程序端) tcp:本地设备端口(被调试程序端)</strong><br>另起一个cmd,运行命令<br>    adb forward tcp:23946 tcp:23946</p>
-<h4 id="2-4-以debug模式启动apk"><a href="#2-4-以debug模式启动apk" class="headerlink" title="2.4 以debug模式启动apk"></a><strong>2.4 以debug模式启动apk</strong></h4><pre><code>adb shell am start -D -n com.ali.tg.testapp/.MainActivity</code></pre><h4 id="2-5-使用IDA进行连接"><a href="#2-5-使用IDA进行连接" class="headerlink" title="2.5 使用IDA进行连接"></a><strong>2.5 使用IDA进行连接</strong></h4><p>选择Debugger-&gt;Attach-&gt;Remote ARMLinux/Android debugger</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMjIxMDc3?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>点击OK按钮，按ctrl+F搜索com.ali进行进程附加操作</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMjM0MjQx?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<h4 id="2-6-启动jdb调试器"><a href="#2-6-启动jdb调试器" class="headerlink" title="2.6 启动jdb调试器"></a><strong>2.6 启动jdb调试器</strong></h4><pre><code>jdb -connect com.sun.jdi.SocketAttach:hostname=127.0.0.1,port=8700</code></pre><p>处于等待状态</p>
-<p><img src="https://img-blog.csdnimg.cn/20200107215447785.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhaWRlMjAxMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h4 id="2-7-下断点"><a href="#2-7-下断点" class="headerlink" title="2.7 下断点"></a><strong>2.7 下断点</strong></h4><p>给dvmDexFileOpenPartial函数下断点，原因如下：<br>dvmDexFileOpenPartial这个函数是最终分析dex文件，加载到内存中的函：</p>
-<pre><code>int dvmDexFileOpenPartial(const void* addr, int len, DvmDex** ppDvmDex);</code></pre><p>第一个参数就是dex内存起始地址，第二个参数就是dex大小。</p>
-<p>找到dvmDexFileOpenPartial的函数地址<br>IDA静态分析libdvm.so得到这个函数的相对地址为Ox46CCC</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMzA1OTg0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>按Ctrl + S查看libdvm.so在虚拟内存中的映射位置</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMzI2MDUx?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>然后将两者相加得到绝对地址：Ox46CCC + Ox415CA000 = Ox41610CCC，使用G键，跳转：</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMzQxNzQ4?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<h4 id="2-8-点击运行按钮或者F9-然后按F8进行单步调试"><a href="#2-8-点击运行按钮或者F9-然后按F8进行单步调试" class="headerlink" title="2.8 点击运行按钮或者F9,然后按F8进行单步调试"></a><strong>2.8 点击运行按钮或者F9,然后按F8进行单步调试</strong></h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzMzU0OTg5?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>其中R0和R1就是传递给dvmDexFileOpenPartial的参数，R0对应于addr，R1对应于len,也就是dex文件的长度</p>
-<p>然后按下Shirt+F2 调出IDA的脚本运行界面</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzNDIwOTM5?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>然后使用jeb工具打开dump到的dex文件</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzIxMjEzNDM3MDQ2?x-oss-process=image/format,png" alt="这里写图片描述"></p>
-<p>于是得到了被加固的dex文件</p>
-<h4 id="2-9-总结"><a href="#2-9-总结" class="headerlink" title="2.9 总结"></a><strong>2.9 总结</strong></h4><p>该样本直接使用dvmDexFileOpenPartial函数实现dex的文件加载，我们直接可在改函数出下断点，然后从内存中直接dump出dex文件，是一个比较简单样例，也算是复习下IDA pro调试的基本步骤，然后真正的现实情况并没有这么简单，很多多应用会采取一系列额反调试手段，比如：</p>
-<p><strong>SO的反调试</strong><br>IDA是使用android_server在root环境下注入到被调试的进程中，那么这里用到一个技术就是Linux中的ptrace<br>那么Android中如果一个进程被另外一个进程ptrace了之后，在他的status文件中有一个字段：TracerPid 可以标识是被哪个进程trace了，我们可以使用命令查看我们的被调试的进行信息：<br>status文件在：/proc/[pid]/status<br>如果检测到这个字段不为0，说明当前so文件正在被调试，这是一种常用的反调试技术</p>
-<p>还有有些加固的apk对dex文件的加载不一定就走dvmDexFileOpenPartial进行加载，会自己实现dex文件的加载函数，但不管怎么样，最终还是会使用mmap内存映射函数，所以下断点的地方又有所区别。</p>
+<h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a><strong>1. 前言</strong></h3><p>之前总结了IDA pro脱壳的基本步骤，包括调试步骤和在libdvm.so的dvmDexFileOpenPartial函数出下断点，从内存中dump出dex文件。<br>这次以360一代加壳为例，试着在mmap出下断点和过一些基本的反调试技术。</p>
+<h3 id="2-脱壳环境搭建"><a href="#2-脱壳环境搭建" class="headerlink" title="2. 脱壳环境搭建"></a><strong>2. 脱壳环境搭建</strong></h3><p>这里的环境搭建和上一篇博客一样<a href="http://blog.csdn.net/daide2012/article/details/75675210" target="_blank" rel="noopener">http://blog.csdn.net/daide2012/article/details/75675210</a><br>启动android_server<br>端口转发<br>以调试模式启动应用<br>打开IDA附件进程<br>设置Debugger Option选项<br>运行jdb调试</p>
+<h3 id="3-开始脱壳"><a href="#3-开始脱壳" class="headerlink" title="3. 开始脱壳"></a><strong>3. 开始脱壳</strong></h3><p><strong>3.1 下断点</strong></p>
+<p>找到mmap函数，在此下断点，一般我们读取文件都是使用fopen和fgets函数，但是360壳通过mmap函数读取/proc/pid/status，来检查TracerPid，因此我们应该在mmap函数处下断点</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1MjUwODY5?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1MzA5NDky?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>单步调试过程中发现一直重复执行一段代码如下：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1MzIxMDMz?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>我们发现，这是一段循环，测试是增加破解难度，故意设置的，因此我们将循环条件的寄存器值进行更改，让其跳出循环，否则要进行多次单步，按F8按的手痛</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1MzM3MjI1?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>在寄存器列表中点击鼠标右键，修改寄存器R11的值为Ox000000A7,提早退出循环，然后单步调试<br>注意单步都标号为loc_760BF08C处的时候，要进入该函数，然后继续单独调试，我试了好几次，每次执行到此处的代码，自动退出了，因此反调试的实现肯定是由该段代码实现，所以要进入调试</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1MzU3MjUw?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>继续单独调试</p>
+<p>过程中会发现程序读取/proc/pid/status的内容，比较TracerPid的值与0的大小</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1NDEzOTEz?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>此时R0寄存器的值恰好是16进制的值11EF,对应的TracerPid为4591，因此要修改R0寄存器的值为0,绕过范调试检测，然后继续单步<br>执行完后，按F9继续运行mmap函数，因为此时读取的并不一定是dex文件，动态库在装载的时候很多都调用了mmap函数，所以回到mmap继续调试</p>
+<p>注意，程序会多次进行反调试检测，所以在进入反调试的函数处建议下断点，这样可以快速的F9到反调试检测的位置。我在调试的过程中一共按了6,7次才把反调试检测过完，中间按错了好几次，每次都得重头再来，耐心很重要啊！！!</p>
+<p>过了反调试之后，在memcmp处下断点，不断的F9，同时在Hex View窗口主要出现dex.035的字符</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1NDI5MzU0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>终于看到dex.035这个字样了，下面的工作使用脚本将dex文件从内存中dump出</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNzI4MjI1NDQ0MTg0?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>之后即可直接采用脚本dump出dex文件</p>
 
       
     </div>
